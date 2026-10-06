@@ -1,0 +1,53 @@
+{
+  "name": "genpark-agentic-price-drop-refund-arbiter-skill",
+  "version": "1.0.0",
+  "description": "Autonomous Post-Purchase Price Drop Monitor & Retailer Refund Claim Arbiter. Tracks online purchases across Shopify, Walmart, Best Buy, and Target, detects price drops within the merchant price-match guarantee window, verifies eligibility conditions, and synthesizes automated refund claims.",
+  "tools": [
+    {
+      "name": "arbitrate_price_drop_refund",
+      "description": "Register purchase receipts, monitor market price drops, verify price guarantee policies, and synthesize retailer refund claim requests.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "register_receipt",
+              "evaluate_price_drop",
+              "synthesize_refund_claim",
+              "get_active_monitors"
+            ],
+            "description": "Price drop arbitration action."
+          },
+          "receipt_id": {
+            "type": "string",
+            "description": "Unique receipt or order ID."
+          },
+          "merchant": {
+            "type": "string",
+            "description": "Retailer merchant name (e.g. SHOPIFY, WALMART, BESTBUY)."
+          },
+          "sku": {
+            "type": "string",
+            "description": "Product SKU or UPC identifier."
+          },
+          "purchase_price": {
+            "type": "number",
+            "description": "Original purchase price."
+          },
+          "current_market_price": {
+            "type": "number",
+            "description": "Observed lower price in market feed."
+          },
+          "competitor_url": {
+            "type": "string",
+            "description": "URL link to the lower price listing."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
